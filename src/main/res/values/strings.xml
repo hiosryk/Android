@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="welcome">WELCOME!!!</string>
+    <string name="click">CLICK!!!</string>
+</resources>
