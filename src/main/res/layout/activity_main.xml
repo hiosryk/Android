@@ -5,35 +5,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
-        android:id="@+id/bt1"
+        android:id="@+id/bt_ex42"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/click"
-        tools:layout_editor_absoluteX="171dp"
-        tools:layout_editor_absoluteY="392dp" />
-    <LinearLayout
+        android:text="실습42"
+        android:textSize="20sp"
+        android:onClick="btClick"
+        />
+    <Button
+        android:id="@+id/bt_ex43"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="@string/welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:text="@string/click"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:text="실습43(계산기-LinearLayout)"
+        android:textSize="20sp"
+        android:onClick="btClick"
+        />
+    <Button
+        android:id="@+id/bt_ex4_24"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="실습4_24(CompoundButton들)"
+        android:textSize="20sp"
+        android:onClick="btClick"
+        />
+    <Button
+        android:id="@+id/bt_inflation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Inflation(부분XML전개)"
+        android:textSize="20sp"
+        android:onClick="btClick"
+        />
+    <Button
+        android:id="@+id/bt_ex51"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="실습51(gravity속성)"
+        android:textSize="20sp"
+        android:onClick="btClick"
+        />
+    <Button
+        android:id="@+id/bt_newActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="새화면띄우기(닫기)"
+        android:textSize="20sp"
+        android:onClick="btClick"
+        />
+
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/welcome"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/bt1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/click"-->
+        <!--tools:layout_editor_absoluteX="171dp"-->
+        <!--tools:layout_editor_absoluteY="392dp" />-->
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<TextView-->
+            <!--android:text="@string/welcome"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+        <!--<Button-->
+            <!--android:text="@string/click"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+    <!--</LinearLayout>-->
 </LinearLayout>
