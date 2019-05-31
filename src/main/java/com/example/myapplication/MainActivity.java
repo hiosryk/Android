@@ -14,7 +14,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    //public class MainActivity extends Activity { //
+    //public class MainActivity extends Activity {
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        String msg = intent.getStringExtra("msg");
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +40,17 @@ public class MainActivity extends AppCompatActivity {
         activityMap.put(R.id.bt_ex42,  Ex42Activity.class);
         activityMap.put(R.id.bt_ex43,  Ex43Activity.class);
         activityMap.put(R.id.bt_ex51,  Ex51Activity.class);
+        activityMap.put(R.id.bt_ex52,  Ex52Activity.class);
         activityMap.put(R.id.bt_ex4_24,  Ex4_24Activity.class);
         activityMap.put(R.id.bt_inflation,  InflationActivity.class);
         activityMap.put(R.id.bt_newActivity,  NewActivity.class);
+        activityMap.put(R.id.bt_ex_10_2, Ex10_2Activity.class);
+        activityMap.put(R.id.bt_ex_10_20, Ex10_20Activity.class);
+        activityMap.put(R.id.bt_ex_10_3, Ex10_3Activity.class);
+        activityMap.put(R.id.bt_login, LoginActivity.class);
+        activityMap.put(R.id.bt_callComponent, CallComponentActivity.class);
+        activityMap.put(R.id.bt_ex11_2, Ex11_2Activity.class);
+        activityMap.put(R.id.bt_customListView, CustomListViewActivity.class);
     }
     private Map<Integer, Class> activityMap = new HashMap<>();
 
