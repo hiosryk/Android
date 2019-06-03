@@ -8,17 +8,24 @@ import android.widget.BaseAdapter;
 import com.kitri.dto.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapter extends BaseAdapter {
     private Context ctx;
-    private ArrayList<Product> items = new ArrayList<Product>();
+    private List<Product> items = new ArrayList<Product>();
     public MyAdapter(Context ctx) {
         super();
         this.ctx = ctx;
     }
-    public MyAdapter(Context ctx, ArrayList<Product> items) {
+    public MyAdapter(Context ctx, List<Product> items) {
         super();
         this.ctx = ctx;	this.items = items;
+    }
+    public void setItems(List<Product> items){
+        this.items = items;
+    }
+    public List<Product> getItems(){
+        return items;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

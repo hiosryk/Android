@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         activityMap.put(R.id.bt_callComponent, CallComponentActivity.class);
         activityMap.put(R.id.bt_ex11_2, Ex11_2Activity.class);
         activityMap.put(R.id.bt_customListView, CustomListViewActivity.class);
+        activityMap.put(R.id.bt_seekbar, SeekBarActivity.class);
+        activityMap.put(R.id.bt_network, NetworkActivity.class);
     }
     private Map<Integer, Class> activityMap = new HashMap<>();
 

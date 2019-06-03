@@ -127,6 +127,22 @@
             android:textSize="20sp"
             android:onClick="btClick"
             />
+        <Button
+            android:id="@+id/bt_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SeekBar(Thread)"
+            android:textSize="20sp"
+            android:onClick="btClick"
+            />
+        <Button
+            android:id="@+id/bt_network"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Network(Thread)"
+            android:textSize="20sp"
+            android:onClick="btClick"
+            />
 
     <!--<TextView-->
         <!--android:layout_width="match_parent"-->
