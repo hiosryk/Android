@@ -143,7 +143,22 @@
             android:textSize="20sp"
             android:onClick="btClick"
             />
-
+        <Button
+            android:id="@+id/bt_exchage_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="공공API(환율)"
+            android:textSize="20sp"
+            android:onClick="btClick"
+            />
+        <Button
+            android:id="@+id/bt_viewcart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="장바구니보기"
+            android:textSize="20sp"
+            android:onClick="btClick"
+            />
     <!--<TextView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->

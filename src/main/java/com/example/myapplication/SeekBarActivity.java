@@ -18,13 +18,21 @@ public class SeekBarActivity extends AppCompatActivity {
     public void progress(View view){
         final SeekBar sb = (SeekBar)findViewById(R.id.sb);
         final TextView tvResult = findViewById(R.id.tvResult);
+        final int num=0;
         new Thread(){
             public void run() {
                 int start = sb.getProgress();
                 for (int i = start; i <= 100; i++) {
                     sb.setProgress(i);
                     SystemClock.sleep(100);
-                    tvResult.setText("현재진행률:"+ sb.getProgress());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            tvResult.setText("현재진행률:"+ sb.getProgress());
+                        }
+                    });
+
                 }
             }
         }.start();

@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         activityMap.put(R.id.bt_customListView, CustomListViewActivity.class);
         activityMap.put(R.id.bt_seekbar, SeekBarActivity.class);
         activityMap.put(R.id.bt_network, NetworkActivity.class);
+        activityMap.put(R.id.bt_exchage_rate, ExchangeRateActivity.class);
+        activityMap.put(R.id.bt_viewcart, ViewCartActivity.class);
+
     }
     private Map<Integer, Class> activityMap = new HashMap<>();
 

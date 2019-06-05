@@ -31,4 +31,15 @@
         android:textSize="30sp"
         android:text="가격:"
         />
+    <NumberPicker
+        android:id="@+id/npQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="장바구니에 넣기"
+        android:textSize="30sp"
+        android:onClick="addCart"/>
 </LinearLayout>

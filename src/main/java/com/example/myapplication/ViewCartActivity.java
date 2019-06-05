@@ -1,57 +1,30 @@
 package com.example.myapplication;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.NumberPicker;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kitri.dto.Product;
 
-import java.io.IOException;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ProductInfoActivity extends AppCompatActivity {
+public class ViewCartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_info);
-        TextView tvProdu_no = (TextView) findViewById(R.id.tvProd_no);
-        TextView tvProdu_name = (TextView) findViewById(R.id.tvProd_name);
-        TextView tvProdu_price = (TextView) findViewById(R.id.tvProd_price);
-
-        Intent intent = getIntent();
-        Product product = (Product) (intent.getExtras().get("productInfo"));
-
-        tvProdu_no.setText(tvProdu_no.getText() + product.getProd_no());
-        tvProdu_name.setText(tvProdu_name.getText() + product.getProd_name());
-        tvProdu_price.setText(tvProdu_price.getText() + String.valueOf(product.getProd_price()));
-
-        NumberPicker numberPicker =
-                (NumberPicker) findViewById(R.id.npQuantity);
-        numberPicker.setMinValue(1);
-        numberPicker.setMaxValue(10);
-        numberPicker.setWrapSelectorWheel(true);
-
-    }
-
-    public void addCart(View view) {
-        TextView tvProdu_no = (TextView) findViewById(R.id.tvProd_no);
-        final String prod_no = tvProdu_no.getText().toString();//상품번호
-        NumberPicker numberPicker = (NumberPicker) findViewById(R.id.npQuantity);
-        final int quantity = numberPicker.getValue();//수량
+        setContentView(R.layout.activity_view_cart);
 
         final SharedPreferences pref =
                 getApplicationContext().getSharedPreferences(
@@ -62,10 +35,11 @@ public class ProductInfoActivity extends AppCompatActivity {
 
         new Thread() {
             public void run() {
-                String urlStr = "http://192.168.14.52/myeljstl/addcart";
+                String urlStr = "http://192.168.14.18/myeljstl/viewcart";
                 InputStream is = null;
+                ByteArrayOutputStream byteArrayOutputStream = null;
+
                 try {
-                    urlStr += "?no=" + prod_no + "&quantity=" + quantity;
                     URL url = new URL(urlStr);
                     HttpURLConnection con = (HttpURLConnection) url.openConnection();
                     con.setRequestMethod("GET");
@@ -88,7 +62,7 @@ public class ProductInfoActivity extends AppCompatActivity {
                         //JSESSIONID쿠키가  요청헤더에 추가됐을경우
                         // 서버가 응답하는 응답헤더에는 쿠키가 없다
                         if (cookies != null) {
-                            Log.i("ProductInfoActivity" , "응답쿠키내용:" + cookies.toString());
+                            Log.i("ViewCartActivity" , "응답쿠키내용:" + cookies.toString());
                             for (String cookie : cookies) {
                                 String cookieNameValue = cookie.split(";\\s*")[0];
                                 String cookieName = cookieNameValue.split("=")[0];
@@ -96,28 +70,45 @@ public class ProductInfoActivity extends AppCompatActivity {
                                 edit.apply();
                             }
                         }
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(ProductInfoActivity.this,
-                                        "장바구니 넣기 성공",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-//                        Map sharedDatas = pref.getAll();
-//                        for(Object key : sharedDatas.keySet()){
-//                            Log.i("ProductInfoActivity", "SharedPreferences: " + key + "=" + sharedDatas.get(key));
-//
-//                        }
-                        finish();
                     }
+
+                    //응답내용
+                    is = con.getInputStream(); //응답결과 입력스트림
+                    byte[] buf = new byte[1024];
+
+                    byteArrayOutputStream = new ByteArrayOutputStream(buf.length);
+                    int readLength = -1;
+                    while ((readLength = is.read(buf)) != -1) {
+                        byteArrayOutputStream.write(buf, 0, readLength);
+                        Log.i("ViewCartActivity", "readLength:" + readLength);
+                    }
+
+                    byte[] byteData = null;
+                    byteData = byteArrayOutputStream.toByteArray();
+
+                    //응답내용문자열
+                    String str = new String(byteData, 0, byteData.length);
+                    Log.i("ViewCartActivity", "응답문자열"+ str);
+                    //JACKSON API : JSONObject와 DTO간의 매핑
+                    ObjectMapper mapper = new ObjectMapper();
+                    Map<Product, Integer> rc = mapper.readValue(
+                            str,
+                            new TypeReference<Map<Product, Integer> >() {
+                            });
+                    Log.i("ViewCartActivity", "응답결과 map");
+                    Log.i("ViewCartActivity", "장바구니 상품종류:" + rc.size());
+                    Log.i("ViewCartActivity", "-------");
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
-
+                    if(is != null) {
+                        try {
+                            is.close();
+                        }catch(Exception e){}
+                    }
                 }
             }
         }.start();
+
     }
 }

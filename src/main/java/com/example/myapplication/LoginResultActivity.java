@@ -16,16 +16,20 @@ public class LoginResultActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
-        String pass = intent.getStringExtra("pass");
-
+//        String pass = intent.getStringExtra("pass");
+        String result = intent.getStringExtra("result");
         TextView tvResult = (TextView)findViewById(R.id.tvResult);
-        tvResult.setText(id + "님 로그인 성공!");
+        if(result.equals("1")) {
+            tvResult.setText(id + "님 로그인 성공!");
+        }else{
+            tvResult.setText(id + "님 로그인 실패!");
+        }
         Log.i("LoginResultActivity", "onCreate()");
     }
     public void close(View view){
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.putExtra("msg", id+"님 환영합니다!");
         startActivity(intent);
         finish(); //화면사라지기 onPause->onStop
